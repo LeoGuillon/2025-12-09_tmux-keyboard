@@ -6,10 +6,9 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \documentclass[
-	11pt, % Default font size
-	aspectratio=169, % Set 16:9 aspect ratio
+  11pt, % Default font size
+  aspectratio=169, % Set 16:9 aspect ratio
 ]{beamer}
-
 
 % Packages
 \usepackage[T1]{fontenc}
@@ -22,28 +21,20 @@
 % Layout theme
 \usetheme[
   % showmaxslides, % displays the total page number in the page numbering
-  % showsectiontoc, % displays a table of contents at the beginning of each section
-  serif,  % uses a serif font for body text ;
-          % depending on your TeX compiling engine, it will be different :
-          %   on LuaTeX and XeTeX : EB Garamond
-          %   on pdfTeX : Times New Roman
-          % NB : if you use any amount of math in your presentation, it is advised to use a serif font
-  nexa  % uses Nexa font for structure text instead of default Trebuchet MS ;
-        % WARNING : you must build with LuaTeX or XeTeX, otherwise the default beamer font (e.g. sans-serif Computer Modern) will be used.
+  showsectiontoc, % displays a table of contents at the beginning of each section
 ]{Aramis}
 
 % Paths and misc stuff
 \graphicspath{{img/}}
 
 %------------------
-%	PRESENTATION INFORMATION
+%  PRESENTATION INFORMATION
 %------------------
 
-\title{Title : usually longer than you would expect for a research paper, so make sure it fits}
-\subtitle{Subtitle : shorter than the title}
-\author{Author\inst{1}, another author\inst{2}}
-\institute{\inst{1}ARAMIS Lab, \inst{2}Another institute}
-\date{\today}
+\title{\texttt{tmux} : an open-source and keyboard-centric terminal multiplexer}
+\subtitle{With some keyboard efficiency tips}
+\author{Léo Guillon}
+\date{09/12/2025}
 
 %------------------
 
@@ -52,116 +43,117 @@
 \begin{document}
 
 %------------------
-%	TITLE SLIDE
+%  TITLE SLIDE
 %------------------
 
 \begin{frame}[plain, label=titlepage]
-	\titlepage % Displays the title slide
+  \titlepage % Displays the title slide
 \end{frame}
 
 %------------------
-%	TABLE OF CONTENTS SLIDE
+%  TABLE OF CONTENTS SLIDE
 %------------------
 
 \begin{frame}
-	\frametitle{Presentation Outline} % Slide title
-	\tableofcontents[hideallsubsections] % Displays the table of contents
+  \frametitle{Presentation Outline} % Slide title
+  \tableofcontents[hideallsubsections] % Displays the table of contents
 \end{frame}
 
 %------------------
-%	BODY SECTIONS
+%  BODY SECTIONS
 %------------------
 
-\section{Text}
+\section{Introduction}
 
-\begin{frame}
-  \frametitle{Plain text}
+\begin{frame}{Who am I, and my general work philosophy}
+  My work philosophy : use tools that are :
+  \begin{description}
+    \item[efficient]
+    \item[minimalist]
+    \item[open]
+  \end{description}
 
-  \lipsum[1][1-5]
-  \vfill
-  \textbf{This is some bolt text.}
-  \vfill
-  \textit{This is some italic text.}
-
-\end{frame}
-
-\begin{frame}
-  \frametitle{Some maths}
-
-  You can display some math blocks like this :
-  \[\mathcal{N}(x~|~\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},\]
-  or also write inline math like this : $f(x) = \mathcal{N}(x~|~\mu, \sigma)$.
-
-\end{frame}
-
-\begin{frame}
-
-  Here’s a plain frame, without any title.
-
-\end{frame}
-
-\section{Lists}
-
-\subsection{Bullet lists}
-\begin{frame}
-  \frametitle{Bullet list}
-
+  Examples of tools I use :
   \begin{itemize}
-    \item First point
-    \item Second point
-    \item Third point
+    \item Zen Browser
+    \item Obsidian
+    \item Sioyek
+    \item Wezterm (terminal), with \texttt{neovim} (code), \texttt{yazi} (file explorer), \texttt{tmux}
   \end{itemize}
 
 \end{frame}
 
-\subsection{Numbered lists}
-\begin{frame}{Numbered list}
-  \begin{enumerate}
-    \item First point
-    \item Second point
-    \item Third point
-  \end{enumerate}
+\section{\texttt{tmux} as your terminal multiplexer}
+
+\subsection{Use cases}
+
+\begin{frame}{What is a terminal multiplexer ?}
 
 \end{frame}
 
+\subsection{General workflow and vocabulary}
 
-
-\section{Figures and stuff}
-
-\begin{frame}
-  \frametitle{Figure}
-
-  \begin{figure}
-    \includegraphics[height=.6\paperheight]{logos/logo_ARAMISLAB.png}
-    \caption{A sample figure}
-  \end{figure}
+\begin{frame}{\texttt{tmux}’s hierarchy}
 
 \end{frame}
 
-\begin{frame}
-  \frametitle{Table}
-
-  \begin{table}
-    \begin{tabular}{|c|c|}
-      \hline
-      column 1 & column 2\\
-      \hline
-      some stuff here & and also there\\
-      \hline
-      another column & one last cell\\
-      \hline
-    \end{tabular}
-    \caption{A sample table}
-  \end{table}
+\begin{frame}{Workflow with tmux}
 
 \end{frame}
 
-
-\section{Bibliography}
-
-\begin{frame}
-  \frametitle{References}
+\begin{frame}{Example with my personal use}
 
 \end{frame}
 
+\subsection{Commands and setup}
+
+\section{Keyboard tips}
+
+\subsection{Touch-typing}
+
+\begin{frame}{\emph{Hunt and peck} vs. \emph{touch-typing}}
+
+\end{frame}
+
+\begin{frame}{Touch-typing : general posture}
+
+\end{frame}
+
+\begin{frame}{Touch-typing : advices}
+
+\end{frame}
+
+\subsection{Learn your keyboard shortcuts !}
+
+\begin{frame}{MacOS usual keyboard shortcuts}
+
+\end{frame}
+
+\begin{frame}{App-specific shortcuts}
+
+\end{frame}
+
+\subsection{Text expander}
+
+\begin{frame}{What is a text expander ?}
+
+\end{frame}
+
+\begin{frame}{Espanso : an open-source text expander}
+
+\end{frame}
+
+\subsection{Some more rabbit holes}
+
+\begin{frame}{Some more rabbit holes}
+
+\end{frame}
+
+\section*{Conclusion}
+
+\begin{frame}{Conclusion}
+  % tmux : a nice tool to improve your terminal and dev workflow
+  % keyboard efficiency : a must when you spend 8 hours a day behind a computer
+  % practice touch-typing, and improve going forward
+\end{frame}
 \end{document}
