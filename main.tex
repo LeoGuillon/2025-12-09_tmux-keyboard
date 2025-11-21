@@ -1,0 +1,167 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Beamer Presentation - LaTeX Template
+% Version 2.0 (March 8, 2022)
+% Original Template: https://www.LaTeXTemplates.com
+% License: CC BY-NC-SA 4.0
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[
+	11pt, % Default font size
+	aspectratio=169, % Set 16:9 aspect ratio
+]{beamer}
+
+
+% Packages
+\usepackage[T1]{fontenc}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usepackage{lipsum} % useful for creating some dummy text
+\usepackage[base]{babel} % comment if you intend to create a presentation in french
+% \usepackage[french]{babel} % uncomment if you intend to create a presentation in french
+
+% Layout theme
+\usetheme[
+  % showmaxslides, % displays the total page number in the page numbering
+  % showsectiontoc, % displays a table of contents at the beginning of each section
+  serif,  % uses a serif font for body text ;
+          % depending on your TeX compiling engine, it will be different :
+          %   on LuaTeX and XeTeX : EB Garamond
+          %   on pdfTeX : Times New Roman
+          % NB : if you use any amount of math in your presentation, it is advised to use a serif font
+  nexa  % uses Nexa font for structure text instead of default Trebuchet MS ;
+        % WARNING : you must build with LuaTeX or XeTeX, otherwise the default beamer font (e.g. sans-serif Computer Modern) will be used.
+]{Aramis}
+
+% Paths and misc stuff
+\graphicspath{{img/}}
+
+%------------------
+%	PRESENTATION INFORMATION
+%------------------
+
+\title{Title : usually longer than you would expect for a research paper, so make sure it fits}
+\subtitle{Subtitle : shorter than the title}
+\author{Author\inst{1}, another author\inst{2}}
+\institute{\inst{1}ARAMIS Lab, \inst{2}Another institute}
+\date{\today}
+
+%------------------
+
+% \includeonlyframes{titlepage}
+
+\begin{document}
+
+%------------------
+%	TITLE SLIDE
+%------------------
+
+\begin{frame}[plain, label=titlepage]
+	\titlepage % Displays the title slide
+\end{frame}
+
+%------------------
+%	TABLE OF CONTENTS SLIDE
+%------------------
+
+\begin{frame}
+	\frametitle{Presentation Outline} % Slide title
+	\tableofcontents[hideallsubsections] % Displays the table of contents
+\end{frame}
+
+%------------------
+%	BODY SECTIONS
+%------------------
+
+\section{Text}
+
+\begin{frame}
+  \frametitle{Plain text}
+
+  \lipsum[1][1-5]
+  \vfill
+  \textbf{This is some bolt text.}
+  \vfill
+  \textit{This is some italic text.}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Some maths}
+
+  You can display some math blocks like this :
+  \[\mathcal{N}(x~|~\mu, \sigma) = \frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(x-\mu)^2}{2\sigma^2}\right\},\]
+  or also write inline math like this : $f(x) = \mathcal{N}(x~|~\mu, \sigma)$.
+
+\end{frame}
+
+\begin{frame}
+
+  Here’s a plain frame, without any title.
+
+\end{frame}
+
+\section{Lists}
+
+\subsection{Bullet lists}
+\begin{frame}
+  \frametitle{Bullet list}
+
+  \begin{itemize}
+    \item First point
+    \item Second point
+    \item Third point
+  \end{itemize}
+
+\end{frame}
+
+\subsection{Numbered lists}
+\begin{frame}{Numbered list}
+  \begin{enumerate}
+    \item First point
+    \item Second point
+    \item Third point
+  \end{enumerate}
+
+\end{frame}
+
+
+
+\section{Figures and stuff}
+
+\begin{frame}
+  \frametitle{Figure}
+
+  \begin{figure}
+    \includegraphics[height=.6\paperheight]{logos/logo_ARAMISLAB.png}
+    \caption{A sample figure}
+  \end{figure}
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Table}
+
+  \begin{table}
+    \begin{tabular}{|c|c|}
+      \hline
+      column 1 & column 2\\
+      \hline
+      some stuff here & and also there\\
+      \hline
+      another column & one last cell\\
+      \hline
+    \end{tabular}
+    \caption{A sample table}
+  \end{table}
+
+\end{frame}
+
+
+\section{Bibliography}
+
+\begin{frame}
+  \frametitle{References}
+
+\end{frame}
+
+\end{document}

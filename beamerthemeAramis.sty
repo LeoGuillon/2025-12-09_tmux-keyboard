@@ -1,0 +1,20 @@
+\ProvidesPackage{beamerthemeAramis}
+
+\mode<presentation>
+
+\DeclareOptionBeamer{showmaxslides}{\PassOptionsToPackage{showmaxslides}{beamerouterthemeAramis}}
+\DeclareOptionBeamer{showsectiontoc}{\PassOptionsToPackage{showsectiontoc}{beamerinnerthemeAramis}}
+\DeclareOptionBeamer{serif}{\PassOptionsToPackage{serif}{beamerfontthemeAramis}}
+\DeclareOptionBeamer{nexa}{\PassOptionsToPackage{nexa}{beamerfontthemeAramis}}
+
+\ProcessOptionsBeamer
+
+\usecolortheme{Aramis}
+\usefonttheme{Aramis}
+\useoutertheme{Aramis}
+\useinnertheme{Aramis}
+
+\setbeamertemplate{navigation symbols}{} % Remove navigation symbols
+
+
+\mode<all>
