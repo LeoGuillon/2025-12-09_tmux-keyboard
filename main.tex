@@ -31,8 +31,8 @@
 %  PRESENTATION INFORMATION
 %------------------
 
-\title{\texttt{tmux} : an open-source and keyboard-centric terminal multiplexer}
-\subtitle{With some keyboard efficiency tips}
+\title{\texttt{tmux}\newline an open-source terminal multiplexer}
+\subtitle{With some keyboard tips to skyrocket your development workflow}
 \author{Léo Guillon}
 \date{09/12/2025}
 
@@ -67,11 +67,11 @@
 
 \begin{frame}{Who am I, and my general work philosophy}
   My work philosophy : use tools that are :
-  \begin{description}
-    \item[efficient]
-    \item[minimalist]
-    \item[open]
-  \end{description}
+  \begin{itemize}
+    \item \textbf{efficient}
+    \item \textbf{minimalist}
+    \item \textbf{open}
+  \end{itemize}
 
   Examples of tools I use :
   \begin{itemize}
@@ -89,15 +89,53 @@
 
 \begin{frame}{What is a terminal multiplexer ?}
 
+  General idea : instead of working with single terminal, and nuking everything once you close it, you split it in multiple windows, as you can do in VSCode for example.
+
+\end{frame}
+
+\begin{frame}{Use cases for a terminal multiplexer}
+
+  If you :
+  \begin{itemize}
+    \item are already used to the terminal and its commands ;
+    \item use several command line interface (CLI) and terminal user interface (TUI) tools, and simultaneously ;
+    \item make your terminal sessions persistant even when shutting down ;
+    \item are willing to have a streamlined, keyboard-focused workflow,
+  \end{itemize}
+
+  then, a terminal multiplexer may be the right tool for your day-to-day dev work environment !
+
 \end{frame}
 
 \subsection{General workflow and vocabulary}
 
 \begin{frame}{\texttt{tmux}’s hierarchy}
 
+  % idée : mettre une pyramide
+
+  \begin{description}
+    \item[pane] a single terminal instance
+    \item[window] a collection of panes, arranged in a defined layout (similar to a tab)
+    \item[session] a collection of windows
+  \end{description}
+
 \end{frame}
 
 \begin{frame}{Workflow with tmux}
+
+  \begin{enumerate}
+    \item Terminal startup
+    \item You attach to an already existing tmux session, or create a new one
+    \item In a session, you go in your working window (or create a new one)
+    \item In a window, you choose or create a pane
+    \item Have nice working session !
+  \end{enumerate}
+
+  Once you’re done :
+  \begin{enumerate}
+    \item You can kill your pane, window and/or session if you want to
+    \item Detach from your session, and done !
+  \end{enumerate}
 
 \end{frame}
 
@@ -106,6 +144,62 @@
 \end{frame}
 
 \subsection{Commands and setup}
+
+\begin{frame}{\texttt{tmux}’s config}
+
+  \texttt{tmux} works with a config file, \texttt{tmux.conf}, in your \texttt{~/.config/tmux} folder
+
+  You can also split up the config as you want, to make it more modular
+
+  % TODO: capture de l’arborescence de mon setup
+
+\end{frame}
+
+\begin{frame}{\texttt{tmux}’s commands startup point : the prefix key}
+  Different philosophy for commands : instead of having keyboard shortcuts as keys combination, inputs are keys \emph{succession}.
+
+  \begin{itemize}
+    \item not compete with usual OS or app keyboard shortcuts, TUI specific commands
+    \item it’s easier to enter
+  \end{itemize}
+
+  % \[\text{\texttt{tmux} command} = \text{prefix}+\text{command keystroke}\]
+
+  % Default prefix : \texttt{^B}
+  %
+  % My recommandation : setup \texttt{^} on ⇪, and change it to \texttt{^A} (on a QWERTY layout)
+
+\end{frame}
+
+\begin{frame}{Commands worth considering to begin with}
+
+  \begin{description}
+    \item[d] Detach current session
+    \item[c] Create a new window
+    \item[C] Create a new session with a window
+    \item[hjkl/←↓↑→] move from pane to pane (Vim logic for arrows)
+      % TODO: ajouter une image pour justifier le positionnement hjkl
+    \item[1–9] move to window of the corresponding number
+    \item[s] list Sessions
+    \item[,] rename current window
+    \item[\$] rename current session
+    \item[:] open \texttt{tmux}’s command line
+  \end{description}
+
+\end{frame}
+
+\begin{frame}{Bonus setup : \emph{plugins}}
+
+  \begin{itemize}
+    \item \textbf{\texttt{tpm}} \texttt{tmux} plugin manager, mandatory
+    \item \textbf{\texttt{tmux-continuum}+\texttt{tmux-resurrect}} allows saving and resurrection of sessions even when your machine shuts down
+    \item \textbf{\texttt{vim-tmux navigator}} seamless navigation between \texttt{tmux} panes and \texttt{vim} panes
+    \item lot of others plugins
+  \end{itemize}
+
+  My config is available at …
+
+\end{frame}
 
 \section{Keyboard tips}
 
