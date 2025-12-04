@@ -14,7 +14,7 @@
 \usepackage[T1]{fontenc}
 \usepackage{subcaption}
 \usepackage{tikz}
-\usepackage{lipsum} % useful for creating some dummy text
+\usepackage{url}
 \usepackage[base]{babel} % comment if you intend to create a presentation in french
 % \usepackage[french]{babel} % uncomment if you intend to create a presentation in french
 
@@ -24,6 +24,15 @@
   showsectiontoc, % displays a table of contents at the beginning of each section
 ]{Aramis}
 
+\AtBeginSubsection[]{
+  \begin{frame}{Section outline}
+    \tableofcontents[
+      sectionstyle= show/shaded,
+      subsectionstyle=show/shaded/hide
+    ]
+  \end{frame}
+}
+
 % Paths and misc stuff
 \graphicspath{{img/}}
 
@@ -31,8 +40,8 @@
 %  PRESENTATION INFORMATION
 %------------------
 
-\title{\texttt{tmux}\newline an open-source terminal multiplexer}
-\subtitle{With some keyboard tips to skyrocket your development workflow}
+\title{\texttt{tmux} :\newline an open-source and keyboard-centric terminal multiplexer}
+\subtitle{With some typing tips to skyrocket your \newline development workflow}
 \author{Léo Guillon}
 \date{09/12/2025}
 
@@ -56,7 +65,7 @@
 
 \begin{frame}
   \frametitle{Presentation Outline} % Slide title
-  \tableofcontents[hideallsubsections] % Displays the table of contents
+  \tableofcontents[hideallsubsections, pausesections] % Displays the table of contents
 \end{frame}
 
 %------------------
@@ -65,21 +74,74 @@
 
 \section{Introduction}
 
-\begin{frame}{Who am I, and my general work philosophy}
-  My work philosophy : use tools that are :
+\begin{frame}{Who am I ? What I work on ?}
+
+  % TODO: photo CV
+
+  \begin{columns}
+    \begin{column}{0.7\textwidth}
+
+      \begin{description}
+        \item[dec. 2024 → nov. 2025] Research engineer @ Aramis
+        \item[sep. 2025 → june 2026] Preparing mathematics aggregation @ Sorbonne Université
+      \end{description}
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=.7\textwidth]{img/cv_icm.jpg}
+      \end{figure}
+
+    \end{column}
+  \end{columns}
+
+  \vfill
+  \pause
+
+  Dev needs :
   \begin{itemize}
-    \item \textbf{efficient}
-    \item \textbf{minimalist}
-    \item \textbf{open}
+    \item Code : R, Julia, Python
+    \item Note-taking
+    \item Document writing : \LaTeX
   \end{itemize}
 
-  Examples of tools I use :
+\end{frame}
+
+\begin{frame}{My general work and tools philosophy}
+  My work philosophy is to use tools that are :
   \begin{itemize}
-    \item Zen Browser
-    \item Obsidian
-    \item Sioyek
-    \item Wezterm (terminal), with \texttt{neovim} (code), \texttt{yazi} (file explorer), \texttt{tmux}
+    \item<2-> \strong{efficient :} keyboard-centric, local files, …
+    \item<3-> \strong{minimalist :} ability to just do what I need, nothing more ; customization if possible
+    \item<4-> \strong{open :} open-source if possible
   \end{itemize}
+
+  \vfill
+
+  \begin{columns}<5->
+    \begin{column}{0.5\textwidth}
+
+      Examples:
+      \begin{itemize}
+        \item Zen Browser (web browser);
+        \item Obsidian (note-taking);
+        \item Sioyek (pdf reader);
+        \item WezTerm (terminal), alongside:
+          \begin{itemize}
+            \item \texttt{neovim} (code);
+            \item \texttt{yazi} (file explorer)
+            \item \texttt{tmux} (terminal multiplexer);
+          \end{itemize}
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.4\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=.45\textheight]{img/logos.png}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \vfill
 
 \end{frame}
 
@@ -89,7 +151,11 @@
 
 \begin{frame}{What is a terminal multiplexer ?}
 
+  % TODO: block
+
   General idea : instead of working with single terminal, and nuking everything once you close it, you split it in multiple windows, as you can do in VSCode for example.
+
+  % TODO: insérer une image d’exemple, comparaison entre les deux
 
 \end{frame}
 
@@ -97,13 +163,27 @@
 
   If you :
   \begin{itemize}
-    \item are already used to the terminal and its commands ;
-    \item use several command line interface (CLI) and terminal user interface (TUI) tools, and simultaneously ;
-    \item make your terminal sessions persistant even when shutting down ;
-    \item are willing to have a streamlined, keyboard-focused workflow,
+    \item<2-> are already used to the terminal and its commands;
+    \item<3-> use several command line interface (CLI) and terminal user interface (TUI) tools;
+    \item<4-> want to make your terminal sessions persistent;
+    \item<5-> are willing to have a streamlined, keyboard-focused workflow,
   \end{itemize}
 
-  then, a terminal multiplexer may be the right tool for your day-to-day dev work environment !
+  \vfill
+
+  \begin{columns}<6->
+    \begin{column}{0.65\textwidth}
+
+      then, a terminal multiplexer may be the right tool for your day-to-day dev work environment !
+    \end{column}
+    \begin{column}{0.3\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[height=.35\textheight]{img/thumb up.jpg}
+      \end{figure}
+
+    \end{column}
+  \end{columns}
 
 \end{frame}
 
@@ -111,13 +191,27 @@
 
 \begin{frame}{\texttt{tmux}’s hierarchy}
 
-  % idée : mettre une pyramide
-
   \begin{description}
-    \item[pane] a single terminal instance
-    \item[window] a collection of panes, arranged in a defined layout (similar to a tab)
-    \item[session] a collection of windows
+    \item[pane]<2-> a single terminal instance
+    \item[window]<3-> a collection of panes, arranged in a defined layout
+    \item[session]<5-> a collection of windows
   \end{description}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}<4->
+
+      \begin{figure}
+        \centering
+        \includegraphics[height=0.45\textheight]{img/panes.png}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\textwidth}<6->
+
+      \begin{figure}{}
+        \centering
+        \includegraphics[width=\textwidth]{img/statusbar.png}
+      \end{figure}
+    \end{column}
+  \end{columns}
 
 \end{frame}
 
@@ -128,8 +222,11 @@
     \item You attach to an already existing tmux session, or create a new one
     \item In a session, you go in your working window (or create a new one)
     \item In a window, you choose or create a pane
-    \item Have nice working session !
+    \item Have a nice working session !
   \end{enumerate}
+
+  \vfill
+  \pause
 
   Once you’re done :
   \begin{enumerate}
@@ -141,15 +238,25 @@
 
 \begin{frame}{Example with my personal use}
 
+  Use case for my current work :
+
+  % TODO: custom the blocks
+
+  \begin{block}{\LaTeX custom commands}
+    Writing a \LaTeX~package for my custom mathematical commands, as well as a \LaTeX~document with a big table to present them, as well as a \texttt{.json} file to have autocompletion snippets in Obsidian.
+  \end{block}
+
 \end{frame}
 
-\subsection{Commands and setup}
+\subsection{Setup and commands}
 
 \begin{frame}{\texttt{tmux}’s config}
 
   \texttt{tmux} works with a config file, \texttt{tmux.conf}, in your \texttt{~/.config/tmux} folder
 
   You can also split up the config as you want, to make it more modular
+
+  % TODO: écrire avec l’outil sur navigateur pour écrire un arbre
 
   % TODO: capture de l’arborescence de mon setup
 
@@ -160,31 +267,84 @@
 
   \begin{itemize}
     \item not compete with usual OS or app keyboard shortcuts, TUI specific commands
-    \item it’s easier to enter
+    \item it’s easier to enter a succession than a combination of keystrokes
   \end{itemize}
 
-  % \[\text{\texttt{tmux} command} = \text{prefix}+\text{command keystroke}\]
+  \pause
 
-  % Default prefix : \texttt{^B}
-  %
-  % My recommandation : setup \texttt{^} on ⇪, and change it to \texttt{^A} (on a QWERTY layout)
+  \[\text{\texttt{tmux} command} = \text{prefix}+\text{command keystroke}\]
+
+\end{frame}
+
+\begin{frame}{The default prefix, and the better prefix}
+
+  Default prefix : \texttt{C-b}
+
+  \begin{figure}
+    \centering
+    \includegraphics<1-2>[width=.65\textwidth]{img/prefix-1.png}
+    \includegraphics<3->[width=.65\textwidth]{img/prefix-2.png}
+  \end{figure}
+
+  \onslide<2->
+
+  My recommandation : setup \texttt{C-} on Caps Lock (in your MacBook settings), and change it to \texttt{C-a} (on a QWERTY layout) or \texttt{C-q} (on a AZERTY layout)
+\end{frame}
+
+\begin{frame}[fragile]{The better prefix: how to}
+
+  Caps lock to Control :
+
+  Settings → keyboard → keyboard shortcuts → modifier keys
+
+  % TODO: insérer image d’exemple
+  \vfill
+  \pause
+
+  In \texttt{tmux.conf} :
+
+  \begin{verbatim}
+    set-option -g prefix C-a
+    unbind C-b
+    bind C-a send-prefix
+  \end{verbatim}
 
 \end{frame}
 
 \begin{frame}{Commands worth considering to begin with}
 
+  % TODO: diviser en plusieurs diapos
+
   \begin{description}
     \item[d] Detach current session
+    \item["] Horizontal split
+    \item[] Vertical split
     \item[c] Create a new window
-    \item[C] Create a new session with a window
     \item[hjkl/←↓↑→] move from pane to pane (Vim logic for arrows)
       % TODO: ajouter une image pour justifier le positionnement hjkl
     \item[1–9] move to window of the corresponding number
+    \item[n/b] move to next/previous window
     \item[s] list Sessions
     \item[,] rename current window
     \item[\$] rename current session
     \item[:] open \texttt{tmux}’s command line
+    \item[?] list all key binding
   \end{description}
+
+\end{frame}
+
+\begin{frame}{Useful settings}
+
+  How to change or add a keybinding : …
+
+  % TODO: add how to add a keybinding
+
+  \begin{itemize}
+    \item \strong{Enabling the mouse :} \texttt{:set -g mouse on}
+    \item \strong{Start windows indexs at 1 :} \texttt{set -g base-index 1}
+    \item \strong{Automatically renumber windows :} \texttt{set -g renumber-windows on}
+    \item \strong{Stop windows auto-renaming :} \texttt{set -g allow-rename off}
+  \end{itemize}
 
 \end{frame}
 
@@ -194,10 +354,14 @@
     \item \textbf{\texttt{tpm}} \texttt{tmux} plugin manager, mandatory
     \item \textbf{\texttt{tmux-continuum}+\texttt{tmux-resurrect}} allows saving and resurrection of sessions even when your machine shuts down
     \item \textbf{\texttt{vim-tmux navigator}} seamless navigation between \texttt{tmux} panes and \texttt{vim} panes
-    \item lot of others plugins
+    \item lot of others plugins, and color themes !
   \end{itemize}
 
-  My config is available at …
+  % TODO: add several vskip
+
+  % TODO: encadré
+
+  General advice : start small, and add relevant keybindings and plugins for your specific workflow.
 
 \end{frame}
 
@@ -206,15 +370,78 @@
 \subsection{Touch-typing}
 
 \begin{frame}{\emph{Hunt and peck} vs. \emph{touch-typing}}
+  \pause
+  \begin{description}
+    \item[hunt and peck] looking at your keys, and searching them with your eyes
+    \item[touch-typing] one key = one finger, typing without looking at your keyboard
+  \end{description}
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{img/huntandpeck.png}
+  \end{figure}
 
 \end{frame}
 
 \begin{frame}{Touch-typing : general posture}
 
+  % TODO: posture ergonomique générale
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=.8\textwidth]{img/posture.png}
+  \end{figure}
+
+  % TODO: image des dix doigts en position de repos
+
 \end{frame}
 
 \begin{frame}{Touch-typing : advices}
 
+  % TODO: ajouter une pause entre chaque item
+  \begin{itemize}
+    \item<2-> Type with your 10 fingers.
+    \item<3-> One key = one finger.
+    \item<4-> Never look at the keyboard, mask it if needed
+    \item<5-> Always come back to the default position
+    \item<6-> \strong{Accuracy over speed !!} Aim for ≥96\% accuracy, speed will build up over time.
+    \item<7-> Error : use opt+backspace (or ctrl+backspace on Windows) to delete an entire word.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{How to practice touch-typing ?}
+  On a day to day basis : apply previous slides principles.
+
+  \vfill
+  \onslide<2->
+  Websites to practice :
+  \begin{enumerate}
+    \item<2-> \strong{\texttt{keybr} :}  to learn to touch-type with your keyboard layout
+    \item<3-> \strong{\texttt{monkeytype} :} to improve your accuracy (first) and then your speed
+  \end{enumerate}
+
+  % TODO: capture d’écran keybr et monkeytype
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}<2->
+      \begin{figure}
+        \centering
+        \includegraphics[width=.6\textwidth]{img/keybr.png}
+      \end{figure}
+
+    \end{column}
+    \begin{column}{0.5\textwidth}<3->
+      \begin{figure}
+        \centering
+        \includegraphics[width=.8\textwidth]{img/monkeytype.png}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+  \vfill
+
+  \onslide<4->
+  Other alternatives : 10fastfingers, typingrace, …
 \end{frame}
 
 \subsection{Learn your keyboard shortcuts !}
@@ -223,31 +450,112 @@
 
 \end{frame}
 
-\begin{frame}{App-specific shortcuts}
-
-\end{frame}
-
 \subsection{Text expander}
 
 \begin{frame}{What is a text expander ?}
+
+  % TODO: résumé
 
 \end{frame}
 
 \begin{frame}{Espanso : an open-source text expander}
 
+  % TODO: liste des particularités notables d’Espanso
+
+\end{frame}
+
+\begin{frame}{Example of practical uses}
+
+  \begin{itemize}
+    \item \strong{ligatures} : -> = →
+    \item \strong{symbols} : :cmd:, :heart:
+    \item \strong{word shortcuts} : cdlt = cordialement
+    \item \strong{custom infos} : :mpro = \url{leo.guillon@mailo.com}
+    \item \strong{automatic} : :today = current date
+      % TODO: décider si ça vaut le coup de mettre les formulaires
+      % \item \strong{forms} : :lbc
+    \item \strong{useless, but fun} : :flip, …
+  \end{itemize}
+
 \end{frame}
 
 \subsection{Some more rabbit holes}
 
-\begin{frame}{Some more rabbit holes}
+\begin{frame}{Making your keyboard more ergonomic}
+
+  Useful keys closer to the default position : enter, backspace, etc.
+
+  Ctrl on Caps Lock is only the first step : imagine that you had both Ctrl \emph{and} esc on Caps Lock.
+
+  Putting useful shortcuts
+
+  Tons of concepts : layer-taps, double-taps, homerow mods, tap-hold, etc.
+
+  Software and github repos : Karabiner (MacOS), Kanata (multi-platform), Arsenik/Miryoku/… for inspirations
+
+  % TODO: image d’Arsenik ou Miryoku for inspiration
+
+  \begin{figure}
+    \centering
+    \includegraphics[width=.6\textwidth]{img/arsenik.png}
+    \caption{Arsenik keyboard, all options enabled}
+  \end{figure}
 
 \end{frame}
 
-\section*{Conclusion}
+\begin{frame}{Changing your keyboard layout}
+
+  % TODO: insérer ce texte dans un encadré
+
+  General idea : putting the most frequent letters in your language under the most accessible keys according to the « default position »
+
+  \vfill
+  \pause
+
+  \begin{description}
+    \item[English] Qwerty → Dvorak, Colemak, …
+    \item[French] Azerty → Bépo → Ergo-L (<3 <3 <3)
+  \end{description}
+
+  \vfill
+  \pause
+
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+
+      \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/azerty.png}
+        \caption{Azerty layout heatmap}
+      \end{figure}
+    \end{column}
+
+    \pause
+    \begin{column}{0.5\textwidth}
+      \begin{figure}
+        \centering
+        \includegraphics[width=\textwidth]{img/ergol.png}
+        \caption{Ergo-L layout heatmap}
+      \end{figure}
+    \end{column}
+  \end{columns}
+
+\end{frame}
+
+\begin{frame}{Switching to an ergonomic keyboard}
+
+  \center{Warning : \strong{Ultra-deep endless rabbit hole!}}
+
+  % TODO: lapin blanc, montage avec des images des layouts
+\end{frame}
 
 \begin{frame}{Conclusion}
+
+  % TODO: conclusion écrite
+
   % tmux : a nice tool to improve your terminal and dev workflow
   % keyboard efficiency : a must when you spend 8 hours a day behind a computer
   % practice touch-typing, and improve going forward
 \end{frame}
+
 \end{document}
